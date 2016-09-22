@@ -1,27 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="LunchCheck">
   <head>
     <title>Lunch Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script src="app.js"></script>
+
+
+</script>
     <style>
       .message { font-size: 1.3em; font-weight: bold; }
+      .enjoyMessage { color:green; }
+      .emptyMessage { color:red; }
+      .enjoyInput { border-color: green;}
+      .emptyInput { border-color: red;}
+
     </style>
   </head>
 <body>
-   <div class="container">
+   <div class="container" ng-controller="LunchCheckController">
      <h1>Lunch Checker</h1>
 
          <div class="form-group">
-             <input id="lunch-menu" type="text"
+             <input id="lunch-menu" type="text" ng-model="lunch"
              placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control">
+             class="form-control {{borderColor}}">
+             Note:empty spaces aren't consideres as items
          </div>
          <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
+             <button ng-click="displayMessage()" class="btn btn-default">Check If Too Much</button>
          </div>
-         <div class="form-group message">
+         <div class="form-group message {{messageColor}} " >
            <!-- Your message can go here. -->
+           {{message}}
          </div>
    </div>
 
